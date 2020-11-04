@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import javax.swing.JPanel;
-
+import java.io.*;
 
 class SendEvents implements KeyListener, MouseMotionListener, MouseListener, MouseWheelListener{
 	private Socket cSocket = null;
@@ -34,6 +34,7 @@ class SendEvents implements KeyListener, MouseMotionListener, MouseListener, Mou
 		cPanel.addKeyListener(this);
 		cPanel.addMouseListener(this);
 		cPanel.addMouseMotionListener(this);
+		cPanel.addMouseWheelListener(this);
 
 		try{
 			//Prepare PrintWriter which will be used to send commands to the client
