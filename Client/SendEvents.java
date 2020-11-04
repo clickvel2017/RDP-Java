@@ -5,13 +5,15 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import javax.swing.JPanel;
 
 
-class SendEvents implements KeyListener, MouseMotionListener, MouseListener{
+class SendEvents implements KeyListener, MouseMotionListener, MouseListener, MouseWheelListener{
 	private Socket cSocket = null;
 	private JPanel cPanel = null;
 	private PrintWriter writer = null;
@@ -96,6 +98,13 @@ class SendEvents implements KeyListener, MouseMotionListener, MouseListener{
 	public void keyReleased(KeyEvent e){
 		writer.println(Commands.RELEASE_KEY.getAbbrev());
 		writer.println(e.getKeyCode());
+		writer.flush();
+	}
+	
+    public void mouseWheelMoved(MouseWheelEvent event) {
+		int steps = event.getWheelRotation();
+		writer.println(Commands.WHEEL_MOUSE.getAbbrev());
+		writer.println(steps);
 		writer.flush();
 	}
 }

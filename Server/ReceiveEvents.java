@@ -42,6 +42,9 @@ class ReceiveEvents extends Thread{
 					case-5:
 					robot.mouseMove(scanner.nextInt(),scanner.nextInt());
 					break;
+					case-6:
+					robot.mouseWheel(scanner.nextInt());
+					break;
 					}
 
 					}
